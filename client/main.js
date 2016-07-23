@@ -32,8 +32,8 @@ import './main.html';
     else {// there is a chat going already - use that. 
       chatId = chat._id;
     }
-    if (chatId){// looking good, save the id to the session
-      Session.set("chatId",chatId);
+    if (chatId){// looking good, save the id to the UserSession
+      UserSession.set("chatId",chatId);
     }
     this.render("navbar", {to:"header"});
     this.render("chat_page", {to:"main"});  
@@ -65,12 +65,20 @@ import './main.html';
 
   Template.chat_page.helpers({
     messages:function(){
-      var chat = Chats.findOne({_id:Session.get("chatId")});
+      var chat = Chats.findOne({_id:UserSession.get("chatId")});
       return chat.messages;
     }, 
     other_user:function(){
       return ""
     }, 
+    thisisuser:function(textBy){debugger;
+    	if (Meteor.user().profile.avatar==textBy){ 
+    		return true;
+    	}
+    	else {
+    		return false;
+    	}
+    }
 
   })
  Template.chat_page.events({
@@ -79,8 +87,9 @@ import './main.html';
     // stop the form from triggering a page reload
     event.preventDefault();
     // see if we can find a chat object in the database
+    if (event.target.chat.value == ""){ return; }
     // to which we'll add the message
-    var chat = Chats.findOne({_id:Session.get("chatId")});
+    var chat = Chats.findOne({_id:UserSession.get("chatId")});
     if (chat){// ok - we have a chat to use
       var msgs = chat.messages; // pull the messages property
       if (!msgs){// no messages yet, create a new array
@@ -89,7 +98,7 @@ import './main.html';
       // is a good idea to insert data straight from the form
       // (i.e. the user) into the database?? certainly not. 
       // push adds the message to the end of the array
-      msgs.push({text: event.target.chat.value});
+      msgs.push({text: event.target.chat.value, textBy:Meteor.user().profile.avatar});
       // reset the form
       event.target.chat.value = "";
       // put the messages array onto the chat object
