@@ -7,3 +7,9 @@
 .avatar_img{
 	height:75px;
 }
+
+body {background-image: url(13921.jpg); background-size: 100%; background-repeat: repeat-y;}
+
+h2 {color: white;}
+
+.form {margin-bottom: 30px;}
