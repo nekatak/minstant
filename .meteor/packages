@@ -23,4 +23,4 @@ accounts-password
 iron:router
 twbs:bootstrap
 benjaminrh:user-session
-ian:accounts-ui-bootstrap-3
+accounts-base
