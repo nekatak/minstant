@@ -1,0 +1,24 @@
+  <template name="register">
+   <form id="register-form" action="action">
+      <div>
+       <input type="email" id="account-email" placeholder="email" />
+       <input type="text" id="account-username" placeholder="username" />
+       <input type="password" id="account-password" placeholder="password" />
+       {{>iconSelect}}
+       <input type="submit" id="create-account" value="Create an Account" />
+     </div>
+   </form>
+  </template>
+
+
+     <template name="iconSelect">
+   <div class="dropdown">
+    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Pick your avatar
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+    {{#each icons}}
+      <li><a href="#"><img src="/{{this}}" style="height:30px;" class="js-avatar"/> </a></li>
+    {{/each}}
+    </ul>
+  </div>
+   </template>

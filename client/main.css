@@ -13,3 +13,5 @@ body {background-image: url(13921.jpg); background-size: 100%; background-repeat
 h2 {color: white;}
 
 .form {margin-bottom: 30px;}
+
+ul.dropdownmenu {width:50px; min-width: 0px;}
