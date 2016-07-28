@@ -26,7 +26,7 @@ Router.onBeforeAction(function() {
   Router.route('/chat/:_id', function () {
     // the user they want to chat to has id equal to 
     // the id sent in after /chat/... 
-    var otherUserId = this.params._id;
+    var otherUserId = this.params._id; 
     // find a chat that has two users that match current user id
     // and the requested user id
     var filter = {$or:[
@@ -35,7 +35,8 @@ Router.onBeforeAction(function() {
                 ]};
     var chat = Chats.findOne(filter);
     if (!chat){// no chat matching the filter - need to insert a new one
-      chatId = Chats.insert({user1Id:Meteor.userId(), user2Id:otherUserId});
+      chatId=Meteor.call("insertChat",otherUserId)
+      //chatId = Chats.insert({user1Id:Meteor.userId(), user2Id:otherUserId});
     }
     else {// there is a chat going already - use that. 
       chatId = chat._id;
@@ -87,7 +88,7 @@ Router.onBeforeAction(function() {
     		return false;
     	}
     },
-    ava:function(textBy){debugger;
+    ava:function(textBy){
       var user=Meteor.users.findOne({username:textBy}).profile.avatar;
       return user;
     }
@@ -116,7 +117,7 @@ Router.onBeforeAction(function() {
       // put the messages array onto the chat object
       chat.messages = msgs;
       // update the chat object in the database.
-      Chats.update(chat._id, chat);
+      Meteor.call("updateChat",UserSession.get("chatId"),chat)
     }
   }
  })
