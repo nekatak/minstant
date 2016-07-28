@@ -15,9 +15,14 @@
           return;
         }
 
+        if (Meteor.users.findOne({username:username})) { 
+         alert('Try another username and email');
+         return; 
+        }
+
       Accounts.createUser({email: email, username: username, profile:{ avatar:avatar}, password : password}, function(err){
           if (err) {
-            console.log('Try another username and email');
+            alert('Try another username and email');
             // Inform the user that account creation failed
           } else {console.log('successfully made account!')
             // Success. Account has been created and the user
