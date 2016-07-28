@@ -14,7 +14,13 @@ import { Meteor } from 'meteor/meteor';
       if (this.userId){
       return Meteor.users.find({},{fields:{services:0,emails:0}});
        }
-    });  
+    });
+    Meteor.publish("currentChat",function(otherUserId){
+      return Chats.find({$or:[
+                {user1Id:this.userId, user2Id:otherUserId}, 
+                {user2Id:this.userId, user1Id:otherUserId}
+                ]});
+    } ) ;
   });
 
   

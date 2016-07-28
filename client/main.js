@@ -29,9 +29,9 @@ import './main.html';
         return false;
       }
     }
-  })
+  });
 
-
+ 
   Template.chat_page.helpers({
     messages:function(){
       var chat = Chats.findOne({_id:UserSession.get("chatId")});
@@ -50,11 +50,7 @@ import './main.html';
     		return false;
     	}
     },
-    ava:function(textBy){
-      var user=Meteor.users.findOne({username:textBy}).profile.avatar;
-      return user;
-    }
-
+ 
   })
  Template.chat_page.events({
   // this event fires when the user sends a message on the chat page
@@ -73,7 +69,7 @@ import './main.html';
       // is a good idea to insert data straight from the form
       // (i.e. the user) into the database?? certainly not. 
       // push adds the message to the end of the array
-      msgs.push({text: event.target.chat.value, textBy:Meteor.user().username});
+      msgs.push({text: event.target.chat.value, textBy:Meteor.user().username, ava:Meteor.user().profile.avatar});
       // reset the form
       event.target.chat.value = "";
       // put the messages array onto the chat object

@@ -17,7 +17,19 @@ Router.onBeforeAction(function() {
   });
 
   // specify a route that allows the current user to chat to another users
-  Router.route('/chat/:_id', function () {
+
+  Router.route('/chat/:_id',{
+  layoutTemplate:"ApplicationLayout",
+  waitOn:function(){
+    return Meteor.subscribe("currentChat",this.params._id);//,
+  },
+  template:"navbar",
+  template:"chat_page",
+  yieldTemplates: {
+    "navbar":{to:"header"},
+    "chat_page":{to:"main"}
+  },
+  data: function () {
     // the user they want to chat to has id equal to 
     // the id sent in after /chat/... 
     var otherUserId = this.params._id; 
@@ -38,6 +50,6 @@ Router.onBeforeAction(function() {
     if (chatId){// looking good, save the id to the UserSession
       UserSession.set("chatId",chatId);
     }
-    this.render("navbar", {to:"header"});
-    this.render("chat_page", {to:"main"});  
+    return chat;
+   }
   });
