@@ -1,11 +1,15 @@
   <template name="register">
    <form id="register-form" action="action">
-      <div>
-       <input type="email" id="account-email" placeholder="email" />
-       <input type="text" id="account-username" placeholder="username" />
-       <input type="password" id="account-password" placeholder="password" />
+      <div style="text-align:center;">
+      Enter your email:<br/>
+       <input type="email" id="account-email" placeholder="email" /><br/>
+       Enter your username:<br/>
+       <input type="text" id="account-username" placeholder="username" /><br/>
+       Enter your password:<br/>
+       <input type="password" id="account-password" placeholder="password" /><br/>
+
        {{>iconSelect}}
-       <input type="submit" id="create-account" value="Create an Account" />
+       <input type="submit" id="create-account" value="Sign up" />
      </div>
    </form>
   </template>
@@ -15,10 +19,10 @@
    <div class="dropdown">
     <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Pick your avatar
     <span class="caret"></span></button>
-    <ul class="dropdown-menu">
+    <div class="dropdown-menu">
     {{#each icons}}
-      <li><a href="#"><img src="/{{this}}" style="height:30px;" class="js-avatar"/> </a></li>
+      <a href="#"><img src="/{{this}}" style="height:30px;" class="js-avatar"/> </a>
     {{/each}}
-    </ul>
+    </div>
   </div>
    </template>

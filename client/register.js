@@ -15,7 +15,7 @@
           return;
         }
 
-      Accounts.createUser({email: email, profile:{username: username, avatar:avatar}, password : password}, function(err){
+      Accounts.createUser({email: email, username: username, profile:{ avatar:avatar}, password : password}, function(err){
           if (err) {
             console.log('Try another username and email');
             // Inform the user that account creation failed

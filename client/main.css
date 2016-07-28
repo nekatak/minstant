@@ -14,4 +14,4 @@ h2 {color: white;}
 
 .form {margin-bottom: 30px;}
 
-ul.dropdownmenu {width:50px; min-width: 0px;}
+ul.dropdownmenu {width:50px; min-width: 0px; align-self: center;}

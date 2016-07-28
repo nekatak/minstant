@@ -4,6 +4,14 @@ import { ReactiveVar } from 'meteor/reactive-var';
 import './main.html';
 
  // set up the main template the the router will use to build pages
+Router.onBeforeAction(function() {
+  if (! Meteor.userId()) {
+    this.render('login');
+  } else {
+    this.next();
+  }
+});
+
   Router.configure({
     layoutTemplate: 'ApplicationLayout'
   });
@@ -50,7 +58,7 @@ import './main.html';
  Template.available_user.helpers({
     getUsername:function(userId){
       user = Meteor.users.findOne({_id:userId});
-      return user.profile.username;
+      return user.username;
     }, 
     isMyUser:function(userId){
       if (userId == Meteor.userId()){
@@ -71,13 +79,17 @@ import './main.html';
     other_user:function(){
       return ""
     }, 
-    thisisuser:function(textBy){debugger;
-    	if (Meteor.user().profile.avatar==textBy){ 
+    thisisuser:function(textBy){
+    	if (Meteor.user().username==textBy){ //////////
     		return true;
     	}
     	else {
     		return false;
     	}
+    },
+    ava:function(textBy){debugger;
+      var user=Meteor.users.findOne({username:textBy}).profile.avatar;
+      return user;
     }
 
   })
@@ -98,7 +110,7 @@ import './main.html';
       // is a good idea to insert data straight from the form
       // (i.e. the user) into the database?? certainly not. 
       // push adds the message to the end of the array
-      msgs.push({text: event.target.chat.value, textBy:Meteor.user().profile.avatar});
+      msgs.push({text: event.target.chat.value, textBy:Meteor.user().username});
       // reset the form
       event.target.chat.value = "";
       // put the messages array onto the chat object

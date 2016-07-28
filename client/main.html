@@ -24,8 +24,8 @@
       </a>
     </div>
     <div class="nav navbar-nav">
-    {{>login}}
-    {{>register}}
+   <!--signout-->
+   <a href="#" onclick="Meteor.logout()">Signout</a>
 </div>
   </div>
 </nav>
@@ -84,12 +84,12 @@
         <div class="row">
       {{#if thisisuser textBy}} 
       <div class="col-md-5 panel panel-primary">
-        <img src="/{{textBy}}" style="width:30px;">  {{text}} 
+        <img src="/{{ava textBy}}" style="width:30px;">(<em>{{textBy}}</em>):   {{text}} 
       </div>
        {{else}}
        <div class="col-md-7"></div>
        <div class="col-md-5 panel panel-warning">
-        <img src="/{{textBy}}" style="width:30px;"> {{text}}    
+        <img src="/{{ava textBy}}" style="width:30px;">(<em>{{textBy}}</em>):  {{text}}    
         </div>
        {{/if}}
        </div>
