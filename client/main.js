@@ -11,6 +11,11 @@ import './main.html';
       return Meteor.users.find();
     }
   })
+
+  Template.available_user.onCreated(function(){
+    this.subscribe("signedUpUsers");
+  } );
+
  Template.available_user.helpers({
     getUsername:function(userId){
       user = Meteor.users.findOne({_id:userId});
