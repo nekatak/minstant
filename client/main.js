@@ -69,7 +69,10 @@ import './main.html';
       // is a good idea to insert data straight from the form
       // (i.e. the user) into the database?? certainly not. 
       // push adds the message to the end of the array
-      msgs.push({text: event.target.chat.value, textBy:Meteor.user().username, ava:Meteor.user().profile.avatar});
+      var Val=event.target.chat.value;debugger;
+      var Val2=Val.replace(/{~/g,"<img src='/").replace(/~}/g,"' style='height:20px;'/>");
+
+      msgs.push({text: Val2, textBy:Meteor.user().username, ava:Meteor.user().profile.avatar});
       // reset the form
       event.target.chat.value = "";
       // put the messages array onto the chat object
