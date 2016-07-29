@@ -43,7 +43,7 @@ import './main.html';
       return ""
     }, 
     thisisuser:function(textBy){
-    	if (Meteor.user().username==textBy){ //////////
+    	if (Meteor.user().username==textBy){ 
     		return true;
     	}
     	else {
