@@ -1,7 +1,7 @@
 var selected;
 
 Template.emoticons.helpers({
-	icons: function(){debugger;
+	icons: function(){
 		var arr=[];
 		for (let i=1; i<21; i++){
 			var img="em"+i+".PNG";

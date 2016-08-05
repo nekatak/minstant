@@ -1,5 +1,8 @@
 <head>
   <title>minstant</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
 </head>
 
 <body>
@@ -8,8 +11,8 @@
 <!-- this is the main template used by iron:router to build the page -->
 <template name="ApplicationLayout">
   {{> yield "header"}}
-  
   <div class="container">
+
   {{> yield "main"}}
   </div>
 </template>
@@ -50,10 +53,10 @@
 <template name="available_user">
   <div class="col-md-2">
     <div class="user_avatar">
-      {{#if isMyUser _id}} 
+      {{#if isMyUser _id}}
       <div class="bg-success">{{getUsername _id}} (YOU)
         <br/>
-        <img src="/{{profile.avatar}}" class="avatar_img">      
+        <img src="/{{profile.avatar}}" class="avatar_img">
       </div>
       {{else}}
       <a href="/chat/{{_id}}">
@@ -76,33 +79,33 @@
       <form class="js-send-chat">
       <input class="input js-input" type="text" name="chat" placeholder="type a message here...">
       <button class="btn btn-default">send</button>
-    </form> 
+    </form>
     </div>
     <!--emoticons area!-->
     {{>emoticons}}
   </div>
 
-      {{#each messages}} 
+      {{#each messages}}
         <div class="row">
-      {{#if thisisuser textBy}} 
+      {{#if thisisuser textBy}}
       <div class="col-md-5 panel panel-primary">
-        <img src="/{{ava}}" style="width:30px;">(<em>{{textBy}}</em>):   {{{text}}} 
+        <img src="/{{ava}}" style="width:30px;">(<em>{{textBy}}</em>):   {{{text}}}
       </div>
        {{else}}
        <div class="col-md-7"></div>
        <div class="col-md-5 panel panel-warning">
-        <img src="/{{ava}}" style="width:30px;">(<em>{{textBy}}</em>):  {{{text}}}    
+        <img src="/{{ava}}" style="width:30px;">(<em>{{textBy}}</em>):  {{{text}}}
         </div>
        {{/if}}
        </div>
       {{/each}}
-    
+
 </template>
 
 <template name="emoticons">
   <div class="col-md-3" style="background-color:white;">
     {{#each icons}}
     <img src="/{{this}}" alt="{{this}}" class="js-emoticon" style="height:30px;" />
-    {{/each}}      
+    {{/each}}
     </div>
 </template>
